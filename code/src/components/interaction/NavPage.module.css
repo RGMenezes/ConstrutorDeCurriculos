@@ -10,3 +10,11 @@
 .row {
     flex-flow: row wrap;
 }
+
+.grid{
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}

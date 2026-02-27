@@ -8,8 +8,8 @@
     gap: 16px;
 }
 
-.hero{
-    height: calc(100vh - 60px);
+.hero, .howItWorks{
+    min-height: calc(100vh - 60px);
     text-align: center;
 }
 .heroActions{
@@ -32,55 +32,23 @@
 .illustration{
     padding: 0px 40px;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     min-width: 260px;
     height: auto;
 }
 
-.grid{
-    width: 100%;
-    
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-}
-
-
-.aboutMeArticle{
+.steps {
     width: 100%;
 
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    
-    text-align: center;
-}
-
-@media screen and (min-width: 768) {
-    .aboutMeArticle{
-        flex-flow: row nowrap;
-    }
-}
-
-.aboutMeContent{
-    max-width: 400px;
-    width: 100%;
-
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    flex: 1;
-}
-
-.actions{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 24px;
+}
+
+@media (max-width: 768px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
 }

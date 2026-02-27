@@ -7,15 +7,15 @@
   --color--border: #000000;
   --color--primary: #FF9F1C;
   --color--on-primary: #011627;
-  --color--secondary: #60A5FA;
-  --color--on-secondary: #000000;
+  --color--secondary: #676C79;
+  --color--on-secondary: #ffffff;
   --color--tertiary: #41EAD4;
   --color--on-tertiary: #000000;
-  --color--accent: #FB5B29;
+  --color--accent: #60A5FA;
   --color--on-accent: #000000;
   --color--error: #F71735;
   --color--on-error: #EBF6FE;
-  --color--shadow: #000000;
+  --color--shadow: #00000054;
   --color--overlay: #0A1128;
 
   --border--radius: 8px;

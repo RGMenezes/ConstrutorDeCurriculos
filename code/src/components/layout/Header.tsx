@@ -8,6 +8,7 @@ import TypingMessage from "../interaction/TypingMessage";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import logo from "@pub/icons/icon.png";
+import Link from "../base/Link";
 
 export default function Header() {
   const [visibility, setVisibility] = useState(false);
@@ -26,7 +27,9 @@ export default function Header() {
   return (
     <div>
       <header className={`${styles.container} ${visibility ? styles.containerOpenMenu : ""}`}>
-        <Image src={logo} alt="Logo" width={40} height={40} />
+        <Link href="/" className={styles.containerLogo}>
+          <Image src={logo} alt="Logo" width={40} height={40} />
+        </Link>
         <TypingMessage data={["PV 6:9-11", "JO 3:16", "MT 6:6", "JR 29:11", "FP 4:6–7"]}/>
         {isMobile ?
           <>
@@ -35,12 +38,12 @@ export default function Header() {
             </div>
                         
             <div onClick={() => setVisibility(false)} className={styles.menuNav}>
-              <NavPage curriculum/>
+              <NavPage gridIcons/>
             </div>
           </>
           :
           <div className={styles.menu}>
-            <NavPage row curriculum/>
+            <NavPage row/>
           </div>
         }
       </header>

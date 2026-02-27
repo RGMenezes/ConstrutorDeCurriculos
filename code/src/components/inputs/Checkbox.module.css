@@ -1,0 +1,28 @@
+.checkbox {
+    position: relative;
+    cursor: pointer;
+
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    color: var(--color--on-background);
+}
+
+.input:focus-visible + .icon {
+  outline: 1px dashed var(--color--border);
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.input:checked + .icon {
+  color: var(--color--primary);
+}

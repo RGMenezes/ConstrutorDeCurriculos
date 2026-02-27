@@ -23,6 +23,10 @@
     grid-template-rows: 60px 1fr;
 }
 
+.containerLogo {
+    width: fit-content;
+}
+
 .fill{
     height: 60px;
     width: 100%;
