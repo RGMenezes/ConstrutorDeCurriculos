@@ -17,7 +17,6 @@ const eslintConfig = defineConfig([
     rules: {
       "quotes": ["error", "double"],
       "semi": ["error", "always"],
-      "camelcase": "error",
       "indent": ["error", 2],
       "no-duplicate-imports": "error",
       "react/react-in-jsx-scope": "off",
