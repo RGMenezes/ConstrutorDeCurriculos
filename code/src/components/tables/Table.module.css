@@ -44,10 +44,11 @@
   gap: 8px;
   align-items: center;
   justify-content: center;
+  justify-self: end;
 }
 
 .actionHeader {
-  text-align: center !important;
+  text-align: right !important;
 }
 
 .actionButton {
