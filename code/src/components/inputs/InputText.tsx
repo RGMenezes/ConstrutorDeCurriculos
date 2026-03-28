@@ -14,7 +14,7 @@ export default function InputText({
 }: InputTextProps) {
   return (
     <div className={`${styles.container} ${className}`}>
-      {label && <Text variant="h4" className={styles.label}>{label}</Text>}
+      {label && <Text variant="h4" className={styles.label}>{props.required ? "*" : ""}{label}</Text>}
       <input
         type="text"
         className={`${styles.input} ${error ? styles.error : ""}`}

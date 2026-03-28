@@ -22,6 +22,19 @@
   text-align: left;
   font-family: var(--font-inter);
   font-size: 14px;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 180px;
+}
+@media screen and (max-width: 767px) {
+  .table th,
+  .table td {
+    max-width: 110px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    hyphens: auto;
+  }
 }
 
 .table td *{
@@ -54,6 +67,15 @@
   align-items: center;
   justify-content: center;
   justify-self: end;
+}
+
+@media screen and (max-width: 767px) {
+  .actionCell {
+    flex-direction: column;
+    gap: 4px;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
 }
 
 .actionHeader {

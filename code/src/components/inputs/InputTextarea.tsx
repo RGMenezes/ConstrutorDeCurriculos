@@ -15,7 +15,7 @@ export default function InputTextarea({ label, error, className = "", ...props }
     <div className={`${styles.container} ${className}`}>
 
       <div className={styles.labelContainer}>
-        {label && <Text variant="h4" className={styles.label}>{label}</Text>}
+        {label && <Text variant="h4" className={styles.label}>{props.required ? "*" : ""}{label}</Text>}
         <Checkbox
           onValueChange={setShowPreview}
           checked={showPreview}

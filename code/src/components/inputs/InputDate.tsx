@@ -1,22 +1,23 @@
-import styles from "./InputNumber.module.css";
+import styles from "./InputDate.module.css";
 import Text from "../base/Text";
 
-interface InputNumberProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputDateProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  className?: string;
 }
 
-export default function InputNumber({
+export default function InputDate({
   label,
   error,
   className = "",
   ...props
-}: InputNumberProps) {
+}: InputDateProps) {
   return (
     <div className={`${styles.container} ${className}`}>
       {label && <Text variant="h4" className={styles.label}>{props.required ? "*" : ""}{label}</Text>}
       <input
-        type="number"
+        type="date"
         className={`${styles.input} ${error ? styles.error : ""}`}
         {...props}
       />

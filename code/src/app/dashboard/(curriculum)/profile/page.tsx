@@ -9,6 +9,7 @@ import { deleteExternalLink } from "@/app/actions/linksActions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Table from "@/components/tables/Table";
+import { formatDateBR } from "@/utils/dateFormat";
 import Button from "@/components/base/Button";
 import Text from "@/components/base/Text";
 import Section from "@/components/layout/Section";
@@ -63,6 +64,12 @@ export default function ProfilePage() {
           columns={[
             { key: "email", label: "Email" },
             { key: "phone", label: "Telefone" },
+            // Exemplo: se houver campos de data, adicione-os aqui:
+            // {
+            //   key: "birth_date",
+            //   label: "Nascimento",
+            //   render: (value) => formatDateBR(value as string),
+            // },
             {
               key: "description",
               label: "Descrição",

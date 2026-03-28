@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  max-width: 1000px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.title {
+  text-align: stretch;
+}

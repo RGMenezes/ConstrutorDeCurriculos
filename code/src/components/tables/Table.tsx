@@ -2,6 +2,7 @@ import styles from "./Table.module.css";
 import Button from "../base/Button";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Loading from "../layout/Loading";
+import { useEffect, useState } from "react";
 
 interface Column<T> {
   key: keyof T;
@@ -26,6 +27,22 @@ export default function Table<T extends { id?: string }>({
   loading = false,
   emptyMessage = "Nenhum registro encontrado",
 }: TableProps<T>) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Função para detectar largura da tela
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Mostra só as 2 ou 3 primeiras colunas e a última (ações) em telas pequenas
+  let visibleColumns = columns;
+  if (isMobile) {
+    visibleColumns = columns.slice(0, Math.min(3, columns.length));
+  }
+
   if (loading) {
     return <Loading />;
   }
@@ -39,7 +56,7 @@ export default function Table<T extends { id?: string }>({
       <table className={styles.table}>
         <thead>
           <tr>
-            {columns.map((col) => (
+            {visibleColumns.map((col) => (
               <th key={String(col.key)}>{col.label}</th>
             ))}
             <th className={styles.actionHeader}>Ações</th>
@@ -48,7 +65,7 @@ export default function Table<T extends { id?: string }>({
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
-              {columns.map((col) => (
+              {visibleColumns.map((col) => (
                 <td key={String(col.key)}>
                   {col.render ? col.render(item[col.key], item) : String(item[col.key] ?? "-")}
                 </td>
