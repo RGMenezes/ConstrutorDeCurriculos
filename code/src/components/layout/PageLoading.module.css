@@ -1,0 +1,38 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 20px;
+}
+
+.paper {
+  width: 100px;
+  height: 141px;
+  padding: 15px 5px;
+
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+
+  border: 2px solid var(--color--primary);
+  border-radius: var(--border--radius);
+  box-shadow: 1px 1px 5px var(--color--shadow);
+}
+
+.line1, .line2, .line3 {
+  height: 10px;
+  border-radius: 4px;
+  background-color: var(--color--primary);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  justify-self: center;
+  color: var(--color--primary);
+}
