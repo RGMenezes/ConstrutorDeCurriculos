@@ -66,7 +66,7 @@ export default function ProfilePage() {
             {
               key: "description",
               label: "Descrição",
-              render: (value) => (value ? String(value).substring(0, 50) + "..." : "-"),
+              render: (value) => (value ? <Text variant="md">{String(value).substring(0, 50) + "..."}</Text> : "-"),
             },
           ]}
           onEdit={(item) => router.push(`/dashboard/profile/create?type=personal&id=${item.id}`)}

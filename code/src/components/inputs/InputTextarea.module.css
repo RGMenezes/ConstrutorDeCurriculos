@@ -5,7 +5,16 @@
   width: 100%;
 }
 
-.label {
+.labelContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.previewContainer {
+  padding: 10px 5px;
+  border-top: 1px solid var(--color--border);
+  border-bottom: 1px solid var(--color--border);
 }
 
 .textarea {
