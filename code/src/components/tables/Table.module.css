@@ -22,6 +22,9 @@
   text-align: left;
   font-family: var(--font-inter);
   font-size: 14px;
+}
+
+.table th{
   border-bottom: 1px solid var(--color--border);
 }
 
@@ -30,9 +33,11 @@
   color: var(--color--on-background);
 }
 
-.table tbody tr:hover {
-  background-color: var(--color--surface-variant);
-  transition: background-color 0.2s ease-in-out;
+@media screen and (min-width: 768px) {
+  .table tbody tr:hover {
+    background-color: var(--color--surface-variant);
+    transition: background-color 0.2s ease-in-out;
+  }
 }
 
 .table tbody tr:last-child td {

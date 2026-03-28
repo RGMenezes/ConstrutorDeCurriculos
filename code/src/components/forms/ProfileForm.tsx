@@ -75,6 +75,7 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
       <InputText
         label="Email"
         type="email"
+        autoComplete="email"
         value={formData.email || ""}
         onChange={(e) => handleChange("email", e.target.value)}
         placeholder="seu@email.com"
@@ -84,6 +85,7 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
       <InputText
         label="Telefone"
         type="tel"
+        autoComplete="tel"
         value={formData.phone || ""}
         onChange={(e) => handleChange("phone", e.target.value)}
         placeholder="(00) 00000-0000"

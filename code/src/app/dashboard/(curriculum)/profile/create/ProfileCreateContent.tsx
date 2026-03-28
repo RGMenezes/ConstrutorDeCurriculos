@@ -10,6 +10,7 @@ import LinkForm from "@/components/forms/LinkForm";
 import Text from "@/components/base/Text";
 import Section from "@/components/layout/Section";
 import styles from "./create.module.css";
+import Loading from "@/components/layout/Loading";
 
 export default function ProfileCreateContent() {
   const searchParams = useSearchParams();
@@ -36,17 +37,17 @@ export default function ProfileCreateContent() {
   const renderForm = () => {
     switch (type) {
     case "personal": {
-      if (profileLoading) return <Text variant="p1">Carregando...</Text>;
+      if (profileLoading) return <Loading />;
       const profileItem = id ? profiles.find((p) => p.id === id) : undefined;
       return <ProfileForm initialData={profileItem} />;}
 
     case "address":
-      if (addressesLoading) return <Text variant="p1">Carregando...</Text>;
+      if (addressesLoading) return <Loading />;
       const address = id ? addresses.find((a) => a.id === id) : undefined;
       return <AddressForm initialData={address} />;
 
     case "link":
-      if (linksLoading) return <Text variant="p1">Carregando...</Text>;
+      if (linksLoading) return <Loading />;
       const link = id ? links.find((l) => l.id === id) : undefined;
       return <LinkForm initialData={link} />;
 

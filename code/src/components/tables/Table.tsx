@@ -1,6 +1,7 @@
 import styles from "./Table.module.css";
 import Button from "../base/Button";
 import { MdDelete, MdEdit } from "react-icons/md";
+import Loading from "../layout/Loading";
 
 interface Column<T> {
   key: keyof T;
@@ -26,7 +27,7 @@ export default function Table<T extends { id?: string }>({
   emptyMessage = "Nenhum registro encontrado",
 }: TableProps<T>) {
   if (loading) {
-    return <div className={styles.container}>Carregando...</div>;
+    return <Loading />;
   }
 
   if (!data || data.length === 0) {

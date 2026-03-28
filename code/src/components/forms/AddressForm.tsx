@@ -69,6 +69,7 @@ export default function AddressForm({ initialData, userId = "" }: AddressFormPro
       <InputText
         label="Cidade"
         value={formData.city || ""}
+        autoComplete="address-level2"
         onChange={(e) => handleChange("city", e.target.value)}
         placeholder="São Paulo"
         error={fieldErrors.city}
@@ -76,6 +77,7 @@ export default function AddressForm({ initialData, userId = "" }: AddressFormPro
 
       <InputText
         label="Estado"
+        autoComplete="address-level1"
         value={formData.state || ""}
         onChange={(e) => handleChange("state", e.target.value)}
         placeholder="SP"
@@ -84,6 +86,7 @@ export default function AddressForm({ initialData, userId = "" }: AddressFormPro
 
       <InputText
         label="País"
+        autoComplete="country-name"
         value={formData.country || ""}
         onChange={(e) => handleChange("country", e.target.value)}
         placeholder="Brasil"
