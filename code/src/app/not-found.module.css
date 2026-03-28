@@ -1,0 +1,8 @@
+.illustration {
+  max-width: 320px;
+  width: 100%;
+}
+
+.article > *{
+  text-align: center !important;
+}
