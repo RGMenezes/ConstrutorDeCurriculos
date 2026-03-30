@@ -22,6 +22,7 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
   const [formData, setFormData] = useState<IProfile>({
     id: initialData?.id,
     user_id: initialData?.user_id || "",
+    name: initialData?.name || "",
     email: initialData?.email || "",
     phone: initialData?.phone || "",
     description: initialData?.description || "",
@@ -71,6 +72,17 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       {error && <div className={styles.errorBanner}><Text variant="p2">{error}</Text></div>}
+
+
+      <InputText
+        label="Nome"
+        type="text"
+        autoComplete="name"
+        value={formData.name || ""}
+        onChange={(e) => handleChange("name", e.target.value)}
+        placeholder="Seu nome completo"
+        error={fieldErrors.name}
+      />
 
       <InputText
         label="Email"

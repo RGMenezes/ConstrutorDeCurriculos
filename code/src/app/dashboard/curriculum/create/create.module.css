@@ -1,0 +1,93 @@
+.finalPreview {
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.wizardNav {
+  overflow-x: auto;
+  width: 100%;
+  padding-bottom: 16px;
+
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.wizardNav::-webkit-scrollbar {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  .wizardNav {
+  width: 100%;
+  padding-bottom: 16px;
+
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+}
+
+.step {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--color--surface-variant);
+  color: var(--color--on-surface-variant);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.activeStep {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--color--primary);
+  color: var(--color--on-primary);
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+
+.wizardContent {
+  min-height: 120px;
+  width: 100%;
+  background: var(--color--surface);
+  border-radius: var(--border--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.wizardActions {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.finalInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0 16px 0;
+  width: 100%;
+  align-items: flex-start;
+}
+
+@media (max-width: 600px) {
+  .finalInputs {
+    gap: 16px;
+    padding: 16px 0 8px 0;
+    width: 100%;
+  }
+}

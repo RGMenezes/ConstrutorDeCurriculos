@@ -40,6 +40,7 @@ export async function upsertFeedback(feedbackData: IFeedback) {
   const safeFeedback = {
     ...feedbackData,
     user_id: user.id,
+    feedback: feedbackData.feedback || "",
     created_at: feedbackData.created_at === "" ? null : feedbackData.created_at,
     updated_at: feedbackData.updated_at === "" ? null : feedbackData.updated_at,
   };

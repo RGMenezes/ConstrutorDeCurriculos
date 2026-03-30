@@ -6,6 +6,7 @@ export interface IFeedback {
   company: string;
   contact?: string;
   relationship: string;
+  feedback?: string; // campo markdown
   link_name?: string;
   link_url?: string;
   created_at?: string; // ISO datetime string

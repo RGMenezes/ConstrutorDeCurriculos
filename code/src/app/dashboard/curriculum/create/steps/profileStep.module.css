@@ -1,0 +1,15 @@
+.profileStep {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.profileTables {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.errorBanner :global(p) {
+  color: var(--color--error);
+}

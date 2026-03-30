@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Text from "../base/Text";
 import styles from "./TypingMessage.module.css";

@@ -62,6 +62,7 @@ export default function ProfilePage() {
         <Table
           data={profiles}
           columns={[
+            { key: "name", label: "Nome" },
             { key: "email", label: "Email" },
             { key: "phone", label: "Telefone" },
             // Exemplo: se houver campos de data, adicione-os aqui:

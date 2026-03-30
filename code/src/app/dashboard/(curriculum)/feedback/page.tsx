@@ -48,6 +48,11 @@ export default function FeedbackPage() {
             { key: "company", label: "Empresa" },
             { key: "relationship", label: "Relação" },
             { key: "contact", label: "Contato" },
+            {
+              key: "feedback",
+              label: "Feedback",
+              render: (value) => <Text variant="md">{value}</Text>,
+            },
           ]}
           onEdit={(item) => router.push(`/dashboard/feedback/create?id=${item.id}`)}
           onDelete={(id) => handleDelete(id)}

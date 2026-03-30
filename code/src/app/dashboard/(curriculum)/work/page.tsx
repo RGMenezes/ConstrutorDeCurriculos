@@ -56,7 +56,11 @@ export default function WorkPage() {
               label: "Término",
               render: (value) => formatDateBR(value as string),
             },
-            { key: "description", label: "Descrição" },
+            {
+              key: "description",
+              label: "Descrição",
+              render: (value) => <Text variant="md">{value}</Text>,
+            },
           ]}
           onEdit={(item) => router.push(`/dashboard/work/create?id=${item.id}`)}
           onDelete={(id) => handleDelete(id)}

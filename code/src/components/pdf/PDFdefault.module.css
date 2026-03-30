@@ -1,0 +1,13 @@
+.previewWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  gap: 16px;
+}
+
+.pdfViewer {
+  border: none;
+  border-radius: var(--border--radius);
+  box-shadow: 1px 1px 3px var(--color--shadow);
+}

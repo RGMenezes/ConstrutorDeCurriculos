@@ -28,6 +28,7 @@ export default function FeedbackForm({ initialData }: FeedbackFormProps) {
     relationship: initialData?.relationship || "",
     link_name: initialData?.link_name || "",
     link_url: initialData?.link_url || "",
+    feedback: initialData?.feedback || "",
   });
 
   const validate = (): boolean => {
@@ -122,6 +123,14 @@ export default function FeedbackForm({ initialData }: FeedbackFormProps) {
         onChange={e => handleChange("link_url", e.target.value)}
         error={fieldErrors.link_url}
         autoComplete="url"
+      />
+      <InputText
+        label="Feedback"
+        placeholder="Ex: Excelente profissional, sempre colaborativo..."
+        value={formData.feedback}
+        onChange={e => handleChange("feedback", e.target.value)}
+        error={fieldErrors.feedback}
+        autoComplete="off"
       />
       <div className={styles.actions}>
         <Button variant="buttonSecondary" onClick={() => router.back()} type="button">Cancelar</Button>
