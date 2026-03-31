@@ -39,6 +39,14 @@ body {
   scroll-behavior: smooth;
 }
 
+hr {
+  border: none;
+  border-top: 2px solid var(--color--border);
+  width: 100%;
+  opacity: 0.15;
+  border-radius: 2px;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

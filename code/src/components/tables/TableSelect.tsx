@@ -65,7 +65,7 @@ export default function TableSelect<T extends { id?: string }>({
 
   let visibleColumns = columns;
   if (isMobile) {
-    visibleColumns = columns.slice(0, Math.min(3, columns.length));
+    visibleColumns = columns.slice(0, Math.min(2, columns.length));
   }
 
   return (

@@ -40,7 +40,7 @@ export default function Table<T extends { id?: string }>({
   // Mostra só as 2 ou 3 primeiras colunas e a última (ações) em telas pequenas
   let visibleColumns = columns;
   if (isMobile) {
-    visibleColumns = columns.slice(0, Math.min(3, columns.length));
+    visibleColumns = columns.slice(0, Math.min(2, columns.length));
   }
 
   if (loading) {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Curriculum } from "@/types/curriculum";
+import { ICurriculum } from "@/types/curriculum";
 import { getCurriculums } from "@/app/actions/curriculumActions";
 
 export function useCurriculums() {
-  const [curriculums, setCurriculums] = useState<Curriculum[]>([]);
+  const [curriculums, setCurriculums] = useState<ICurriculum[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

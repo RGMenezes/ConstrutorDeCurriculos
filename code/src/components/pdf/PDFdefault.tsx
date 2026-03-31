@@ -1,29 +1,12 @@
 "use client";
 
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from "@react-pdf/renderer";
-import styles from "./PDFdefault.module.css";
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import pdfStyles from "./pdfStyles";
-import { IProfile, IAdresses, IExternalLink } from "@/types/resume";
-import { IWork } from "@/types/work";
-import { IFormation } from "@/types/formation";
-import { ISkill } from "@/types/skill";
-import { ILanguage } from "@/types/language";
-import { IFeedback } from "@/types/feedback";
 import MDparser from "./MDparser";
 import { formatDateBR } from "@/utils/dateFormat";
+import CardPDF from "../cards/CardPdf";
+import { ICurriculumPopulated } from "@/types/curriculumPopulated";
 
-
-interface PDFdefaultProps {
-  profile?: IProfile | null;
-  address?: IAdresses | null;
-  links?: IExternalLink[];
-  work?: IWork[];
-  formation?: IFormation[];
-  skills?: ISkill[];
-  languages?: ILanguage[];
-  feedbacks?: IFeedback[];
-  height?: number | string;
-}
 const stylesPDF = StyleSheet.create({
   page: {
     padding: 25,
@@ -58,20 +41,24 @@ const stylesPDF = StyleSheet.create({
   }
 });
 
-export default function PDFdefault({
-  profile,
-  address,
-  links = [],
-  work = [],
-  formation = [],
-  skills = [],
-  languages = [],
-  feedbacks = [],
-  height = 600,
-}: PDFdefaultProps) {
+export default function PDFdefault({ curriculum }: { curriculum: ICurriculumPopulated }) {
+  const {
+    profile,
+    address,
+    links = [],
+    work = [],
+    formation = [],
+    skills = [],
+    languages = [],
+    feedbacks = [],
+    layout,
+    name,
+    id
+  } = curriculum;
+
   // Agrupamento de habilidades por categoria (incluindo idiomas)
   const allSkills = [...skills];
-  if (languages.length > 0) {
+  if (languages && languages.length > 0) {
     allSkills.push(...languages.map(l => ({
       name: l.language + (l.proficiency ? ` (${l.proficiency})` : ""),
       category: "Idiomas",
@@ -116,19 +103,20 @@ export default function PDFdefault({
           </View>
         )}
 
-        <View style={pdfStyles.lh} />
 
-        {profile?.description && <View>
-          <Text style={pdfStyles.h2}>Resumo profissional</Text>
-          <MDparser md={profile.description} />
-        </View>}
-
-        <View style={pdfStyles.lh} />
+        {profile?.description && <>
+          <View style={pdfStyles.lh} />
+          <View>
+            <Text style={pdfStyles.h2}>Resumo profissional</Text>
+            <MDparser md={profile.description} />
+          </View>
+        </>
+        }
         
-        {formation.length > 0 && (
+        {formation.length > 0 && <>
+          <View style={pdfStyles.lh} />
           <View>
             <Text style={pdfStyles.h2}>Formação Acadêmica</Text>
-
             <View style={stylesPDF.sectionColumn}>
               {formation.map((f, i) => (
                 <View key={i} style={stylesPDF.column2}>
@@ -143,14 +131,12 @@ export default function PDFdefault({
               ))}
             </View>
           </View>
-        )}
+        </>}
 
-        <View style={pdfStyles.lh} />
-
-        {work.length > 0 && (
+        {work.length > 0 && <>
+          <View style={pdfStyles.lh} />
           <View>
             <Text style={pdfStyles.h2}>Experiências Profissionais</Text>
-
             <View style={stylesPDF.section}>
               {work.map((w, i) => (
                 <View key={i} style={stylesPDF.section}>
@@ -160,25 +146,21 @@ export default function PDFdefault({
                       <Text style={pdfStyles.text}> — </Text>
                       <Text style={pdfStyles.em}>{w.position}</Text>
                     </View>
-
                     {w.start_date && <Text style={pdfStyles.text}>
                         De: {formatDateBR(w.start_date)} até {w.end_date ? formatDateBR(w.end_date) : "Atual"}
                     </Text>}
                   </View>
-
                   {w.description && <MDparser md={w.description} />}
                 </View>
               ))}
             </View>
           </View>
-        )}
+        </>}
 
-        <View style={pdfStyles.lh} />
-
-        {skills.length > 0 && (
+        {skills.length > 0 && <>
+          <View style={pdfStyles.lh} />
           <View style={stylesPDF.section}>
             <Text style={pdfStyles.h2}>Habilidades</Text>
-
             <View style={stylesPDF.sectionColumn}>
               {skillEntries.map(([cat, names]) => (
                 <View key={cat} style={stylesPDF.column4}>
@@ -188,14 +170,12 @@ export default function PDFdefault({
               ))}
             </View>
           </View>
-        )}
+        </>}
 
-        <View style={pdfStyles.lh} />
-
-        {feedbacks.length > 0 && (
+        {feedbacks.length > 0 && <>
+          <View style={pdfStyles.lh} />
           <View>
             <Text style={pdfStyles.h2}>Feedbacks</Text>
-
             <View style={stylesPDF.sectionColumn}>
               {feedbacks.map((f, i) => (
                 <View key={i} style={stylesPDF.column2}>
@@ -203,13 +183,10 @@ export default function PDFdefault({
                     <Text style={pdfStyles.strong}>{f.name} </Text>
                     <Text style={pdfStyles.text}>({f.position} - {f.company})</Text>
                   </View>
-
                   {f.contact && <Text style={pdfStyles.link}>{f.contact}</Text>}
-
                   <View style={stylesPDF.feedback}>
                     {f.feedback && <Text style={pdfStyles.em}>&ldquo;{f.feedback}&rdquo;</Text>}
                   </View>
-
                   {f.link_url && <Text style={pdfStyles.text}>
                     {f.link_name}: <Text style={pdfStyles.link}>{f.link_url}</Text>
                   </Text>}
@@ -217,16 +194,12 @@ export default function PDFdefault({
               ))}
             </View>
           </View>
-        )}
+        </>}
       </Page>
     </Document>
   );
 
   return (
-    <div className={styles.previewWrapper}>
-      <PDFViewer className={styles.pdfViewer} width="100%" height={height}>
-        {MyDoc}
-      </PDFViewer>
-    </div>
+    <CardPDF doc={MyDoc} name={name} layout={layout} id={id}/>
   );
 }

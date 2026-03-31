@@ -1,0 +1,72 @@
+/* Card com proporção de folha A4 (altura > largura) e sem margin* */
+.card {
+	background: var(--color--surface);
+	color: var(--color--on-surface);
+	border-radius: var(--border--radius);
+	box-shadow: 1px 1px 4px var(--color--shadow);
+
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 0;
+	align-items: center;
+	justify-content: flex-start;
+
+	width: 100%;
+	max-width: 330px;
+	aspect-ratio: 210/297; /* A4 proporção */
+    padding: 18px 12px 24px 12px;
+}
+.cardHeader {
+	display: flex;
+    flex-flow: column nowrap;
+	justify-content: center;
+	gap: 0px;
+	width: 100%;
+
+	text-transform: capitalize;
+}
+.cardContent {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+    height: 100%;
+	justify-content: space-between;
+}
+.description {
+	color: var(--color--secondary);
+	margin-bottom: 8px;
+    text-align: justify;
+}
+.actions {
+    width: 100%;
+	display: grid;
+	gap: 12px;
+	grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
+}
+.actions > * {
+    flex: 1;
+}
+
+.actions2 {
+    width: 100%;
+	display: grid;
+	gap: 12px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: space-around;
+}
+
+.illustrationContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.illustration{
+    padding: 0px 40px;
+    width: 100%;
+    height: auto;
+}
