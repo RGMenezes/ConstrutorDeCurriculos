@@ -84,3 +84,25 @@
     transform: scale(0.95);
     transition: all .05s ease-in-out;
 }
+
+
+.danger {
+    padding: 10px 22px;
+    
+    background-color: var(--color--error);
+    border-radius: var(--border--radius);
+    box-shadow: var(--color--shadow);
+    color: var(--color--on-error);
+}
+.danger.detached{
+    background-color: var(--color--accent);
+}
+@media screen and (min-width: 768px) {
+    .danger:hover{
+        background-color: var(--color--tertiary);
+    }
+}
+.danger:active{
+    transform: scale(0.97);
+    transition: all .05s ease-in-out;
+}

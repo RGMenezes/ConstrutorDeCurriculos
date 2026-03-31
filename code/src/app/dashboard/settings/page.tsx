@@ -91,59 +91,63 @@ export default function SettingsPage() {
 
   return (
     <Section className={styles.settingsContainer}>
-      <Text variant="h2">Configurações</Text>
-      <Text variant="p2">
+      <div className={styles.userInfo}>
+        <Text variant="h2">Configurações</Text>
+        <Text variant="p2">
         Gerencie suas informações básicas e preferências da conta.
-      </Text>
+        </Text>
+      </div>
 
-      <Text variant="h4">Nome</Text>
-      <Text variant="p1">{user?.user_metadata?.name || "-"}</Text>
-      <Text variant="h4">Email</Text>
-      <Text variant="p1">{user?.email || "-"}</Text>
-      <Button onClick={() => setShowEdit(true)} variant="buttonPrimary" style={{ margin: "16px 0 32px 0" }}>Editar dados</Button>
+      <div className={styles.userInfo}>
+        <Text variant="h4">Nome</Text>
+        <Text variant="p1">{user?.user_metadata?.name || "-"}</Text>
+        <Text variant="h4">Email</Text>
+        <Text variant="p1">{user?.email || "-"}</Text>
+      </div>
 
-      {showEdit && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <Text variant="h3">Editar dados</Text>
-            <InputText
-              label="Nome"
-              value={editName}
-              onChange={e => setEditName(e.target.value)}
-              required
-            />
-            <InputText
-              label="Email"
-              value={editEmail}
-              onChange={e => setEditEmail(e.target.value)}
-              required
-              type="email"
-            />
-            {error && <Text variant="p2" className={styles.error}>{error}</Text>}
-            <div className={styles.modalActions}>
-              <Button onClick={handleEdit} disabled={editLoading} variant="buttonPrimary">Salvar</Button>
-              <Button onClick={() => setShowEdit(false)} variant="buttonSecondary">Cancelar</Button>
+      <div className={styles.actionsContainer}>
+        <Button onClick={() => setShowEdit(true)} variant="buttonPrimary">Editar dados</Button>
+        {showEdit && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+              <Text variant="h3">Editar dados</Text>
+              <InputText
+                label="Nome"
+                value={editName}
+                onChange={e => setEditName(e.target.value)}
+                required
+              />
+              <InputText
+                label="Email"
+                value={editEmail}
+                onChange={e => setEditEmail(e.target.value)}
+                required
+                type="email"
+              />
+              {error && <Text variant="p2" className={styles.error}>{error}</Text>}
+              <div className={styles.modalActions}>
+                <Button onClick={handleEdit} disabled={editLoading} variant="buttonPrimary">Salvar</Button>
+                <Button onClick={() => setShowEdit(false)} variant="buttonSecondary">Cancelar</Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-      <Button onClick={handleLogout} variant="buttonSecondary" style={{ margin: "16px 0 0 0" }}>Logout</Button>
-
-      <Button onClick={() => setDeleteConfirm(true)} detached style={{ margin: "32px 0 0 0" }}>Deletar conta</Button>
-      {deleteConfirm && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <Text variant="h3">Tem certeza?</Text>
-            <Text variant="p2">Deseja realmente deletar sua conta? Esta ação não pode ser desfeita.</Text>
-            {error && <Text variant="p2" className={styles.error}>{error}</Text>}
-            <div className={styles.modalActions}>
-              <Button onClick={handleDelete} disabled={deleteLoading} detached>Deletar</Button>
-              <Button onClick={() => setDeleteConfirm(false)} variant="buttonSecondary">Cancelar</Button>
+        )}
+        <Button onClick={handleLogout} variant="buttonSecondary">Logout</Button>
+        <Button onClick={() => setDeleteConfirm(true)} variant="danger">Deletar conta</Button>
+        {deleteConfirm && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modal}>
+              <Text variant="h3">Tem certeza?</Text>
+              <Text variant="p2">Deseja realmente deletar sua conta? Esta ação não pode ser desfeita.</Text>
+              {error && <Text variant="p2" className={styles.error}>{error}</Text>}
+              <div className={styles.modalActions}>
+                <Button onClick={handleDelete} disabled={deleteLoading} variant="danger">Deletar</Button>
+                <Button onClick={() => setDeleteConfirm(false)} variant="buttonSecondary">Cancelar</Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </Section>
   );
 }

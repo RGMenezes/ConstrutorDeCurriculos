@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 import styles from "./Button.module.css";
 
-type ButtonVariant = "buttonPrimary" | "buttonSecondary" | "icon";
+type ButtonVariant = "buttonPrimary" | "buttonSecondary" | "icon" | "danger";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children ?: React.ReactNode;
