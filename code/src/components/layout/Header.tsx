@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BiExitFullscreen, BiMenu } from "react-icons/bi";
+import { BiArrowFromRight, BiExitFullscreen, BiMenu } from "react-icons/bi";
 import Button from "../base/Button";
 import NavPage from "../interaction/NavPage";
 import TypingMessage from "../interaction/TypingMessage";
@@ -9,10 +9,12 @@ import styles from "./Header.module.css";
 import Image from "next/image";
 import logo from "@pub/icons/icon.png";
 import Link from "../base/Link";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [visibility, setVisibility] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
+  const router = useRouter();
     
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +36,7 @@ export default function Header() {
         {isMobile ?
           <>
             <div className={styles.menu}>
+              <Button onClick={() => router.back()} variant="icon" Icon={BiArrowFromRight} />
               <Button onClick={() => setVisibility(!visibility)} variant="icon" Icon={visibility ?  BiExitFullscreen : BiMenu} />
             </div>
                         
@@ -43,6 +46,7 @@ export default function Header() {
           </>
           :
           <div className={styles.menu}>
+            <Button onClick={() => router.back()} variant="icon" Icon={BiArrowFromRight} />
             <NavPage row/>
           </div>
         }

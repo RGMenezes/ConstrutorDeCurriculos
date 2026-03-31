@@ -41,7 +41,11 @@
 }
 
 .menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-self: end;
+    gap: 16px;
 }
 
 .menuNav{
