@@ -32,7 +32,7 @@ export default function LoginPage() {
     <Section className={styles.container}>
       <Text variant="h1">Login</Text>
       <Button Icon={FaGoogle} onClick={handleLogin}>Entrar com Google</Button>
-      <Checkbox onValueChange={setAuthorized}>
+      <Checkbox checked={autorized} onValueChange={setAuthorized}>
         Estou ciente e aceito os <Link href="/terms">Termos</Link>, as <Link href="/privacy">Políticas</Link> e o uso de <Link href="/cookies"> Cookies</Link>.
       </Checkbox>
     </Section>
