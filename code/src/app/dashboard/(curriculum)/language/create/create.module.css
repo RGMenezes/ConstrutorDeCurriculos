@@ -1,6 +1,7 @@
 .container {
   width: 100%;
-  max-width: 1000px;
+  max-width: none;
+  align-self: center;
 
   display: flex;
   flex-direction: column;
@@ -10,5 +11,5 @@
 }
 
 .title {
-  text-align: stretch;
+  text-align: center;
 }
