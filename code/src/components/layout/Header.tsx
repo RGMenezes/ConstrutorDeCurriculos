@@ -32,10 +32,12 @@ export default function Header() {
   return (
     <div>
       <header className={`${styles.container} ${visibility ? styles.containerOpenMenu : ""}`}>
-        <Link href="/" className={styles.containerLogo}>
+        <div className={styles.containerLogo}>
           {!isMainPages && <Button onClick={() => router.back()} variant="icon" Icon={MdKeyboardArrowLeft} />}
-          <Image src={logo} alt="Logo" width={40} height={40} />
-        </Link>
+          <Link href="/">
+            <Image src={logo} alt="Logo" width={40} height={40} />
+          </Link>
+        </div>
         <TypingMessage data={["PV 6:9-11", "JO 3:16", "MT 6:6", "JR 29:11", "FP 4:6–7"]}/>
         {isMobile ?
           <>
