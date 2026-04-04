@@ -1,7 +1,7 @@
 import styles from "./InputTextarea.module.css";
 import Text from "../base/Text";
 import Checkbox from "./Checkbox";
-import { useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 interface InputTextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -11,6 +11,21 @@ interface InputTextareaProps
 
 export default function InputTextarea({ label, error, className = "", ...props }: InputTextareaProps) {
   const [showPreview, setShowPreview] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const adjustTextareaHeight = useCallback(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!showPreview) {
+      adjustTextareaHeight();
+    }
+  }, [showPreview, props.value, adjustTextareaHeight]);
+
   return (
     <div className={`${styles.container} ${className}`}>
 
@@ -30,7 +45,9 @@ export default function InputTextarea({ label, error, className = "", ...props }
         </div>
       ) : (
         <textarea
+          ref={textareaRef}
           className={`${styles.textarea} ${error ? styles.error : ""}`}
+          onInput={adjustTextareaHeight}
           {...props}
         />
       )}

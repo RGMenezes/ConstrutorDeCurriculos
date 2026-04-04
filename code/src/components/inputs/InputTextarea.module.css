@@ -26,8 +26,10 @@
   color: var(--color--on-background);
   background-color: var(--color--surface);
   transition: all 0.2s ease-in-out;
-  resize: vertical;
-  min-height: 100px;
+  resize: none;
+  overflow-y: auto;
+  min-height: 130px;
+  max-height: 420px;
 }
 
 .textarea:focus {
