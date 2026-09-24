@@ -1,9 +1,9 @@
 "use client";
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IFormation } from "@/types/formation";
-import { upsertFormation } from "@/app/actions/formationActions";
 import InputText from "../inputs/InputText";
 import InputDate from "../inputs/InputDate";
 import Button from "../base/Button";
@@ -15,6 +15,7 @@ interface FormationFormProps {
 }
 
 export default function FormationForm({ initialData }: FormationFormProps) {
+  const { save: upsertFormation } = useResourceMutations("formation");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,7 @@ export default function FormationForm({ initialData }: FormationFormProps) {
       setLoading(false);
     } else {
       router.push("/dashboard/formation");
-      router.refresh();
+      // Local data is updated by useResourceMutations.
     }
   };
 

@@ -1,9 +1,9 @@
 "use client";
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ILanguage } from "@/types/language";
-import { upsertLanguage } from "@/app/actions/languageActions";
 import InputText from "../inputs/InputText";
 import Button from "../base/Button";
 import Text from "../base/Text";
@@ -14,6 +14,7 @@ interface LanguageFormProps {
 }
 
 export default function LanguageForm({ initialData }: LanguageFormProps) {
+  const { save: upsertLanguage } = useResourceMutations("languages");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +51,7 @@ export default function LanguageForm({ initialData }: LanguageFormProps) {
       setLoading(false);
     } else {
       router.push("/dashboard/language");
-      router.refresh();
+      // Local data is updated by useResourceMutations.
     }
   };
 

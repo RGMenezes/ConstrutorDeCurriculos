@@ -1,0 +1,10 @@
+import { profilesService } from "./profiles.service";
+import { addressesService } from "./addresses.service";
+import { linksService } from "./links.service";
+import { workService } from "./work.service";
+import { formationService } from "./formation.service";
+import { skillsService } from "./skills.service";
+import { languagesService } from "./languages.service";
+import { feedbacksService } from "./feedbacks.service";
+import { curriculumsService } from "./curriculums.service";
+export const serverServices = { profiles: profilesService, addresses: addressesService, links: linksService, work: workService, formation: formationService, skills: skillsService, languages: languagesService, feedbacks: feedbacksService, curriculums: curriculumsService };

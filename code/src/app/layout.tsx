@@ -1,16 +1,7 @@
+import AppProviders from "@/providers/AppProviders";
+import { auth } from "@/lib/auth";
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk as SpaceGrotesk } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = SpaceGrotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Construtor de Currículo | Crie seu CV Profissional",
@@ -23,13 +14,12 @@ export const metadata: Metadata = {
     "Emprego",
     "Next.js",
     "TypeScript",
-    "Supabase",
+    "MongoDB",
   ],
   authors: [{ name: "Rafael da Gloria Menezes", url: "https://github.com/RGMenezes" }],
   openGraph: {
     title: "Construtor de Currículo - Profissional e Minimalista",
     description: "Crie seu currículo em poucos minutos com uma interface limpa e focada no que importa: sua experiência.",
-    url: "https://seu-dominio-do-projeto.vercel.app",
     siteName: "Construtor de Currículo",
     locale: "pt_BR",
     type: "website",
@@ -37,11 +27,12 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const session = await auth();
   return (
-    <html lang="pt-BR">
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-        {children}
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body>
+        <AppProviders session={session}>{children}</AppProviders>
       </body>
     </html>
   );

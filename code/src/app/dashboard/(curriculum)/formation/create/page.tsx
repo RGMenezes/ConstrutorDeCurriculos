@@ -1,12 +1,12 @@
-import { Suspense } from "react";
-import Section from "@/components/layout/Section";
-import Loading from "@/components/layout/Loading";
-import FormationCreateContent from "./FormationCreateContent";
-
-export default function FormationCreatePage() {
-  return (
-    <Suspense fallback={<Section><Loading /></Section>}>
-      <FormationCreateContent />
-    </Suspense>
-  );
+import { dataKey } from "@/server/dataKey";
+import { notFound } from "next/navigation";
+import { loadData } from "@/server/components/DataBoundary";
+import { DataProvider } from "@/providers/DataProvider";
+import PageClient from "./pageClient";
+export default async function Page({ searchParams }: { searchParams: Promise<{ id?: string }> }) {
+  const { id } = await searchParams;
+  const data = await loadData(["formation"]);
+  const initialData = id ? data.formation?.find(item => item.id === id) : undefined;
+  if (id && !initialData) notFound();
+  return <DataProvider key={dataKey(data)} initial={data}><PageClient initialData={initialData} /></DataProvider>;
 }

@@ -1,27 +1,6 @@
-import { useEffect, useState } from "react";
-import { IFeedback } from "@/types/feedback";
-import { getFeedback } from "@/app/actions/feedbackActions";
-
+"use client";
+import { useData } from "@/providers/DataProvider";
 export function useFeedback() {
-  const [feedbacks, setFeedbacks] = useState<IFeedback[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchFeedbacks = async () => {
-      setLoading(true);
-      const result = await getFeedback();
-      if (result.error) {
-        setError(result.error);
-        setFeedbacks([]);
-      } else {
-        setFeedbacks(result.data || []);
-        setError(null);
-      }
-      setLoading(false);
-    };
-    fetchFeedbacks();
-  }, []);
-
-  return { feedbacks, loading, error };
+  const { data } = useData();
+  return { feedbacks: data.feedbacks ?? [], loading: false, error: null as string | null };
 }

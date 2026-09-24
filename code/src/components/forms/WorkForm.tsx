@@ -1,9 +1,9 @@
 "use client";
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IWork } from "@/types/work";
-import { upsertWork } from "@/app/actions/workActions";
 import InputText from "../inputs/InputText";
 import InputTextarea from "../inputs/InputTextarea";
 import InputDate from "../inputs/InputDate";
@@ -16,6 +16,7 @@ interface WorkFormProps {
 }
 
 export default function WorkForm({ initialData }: WorkFormProps) {
+  const { save: upsertWork } = useResourceMutations("work");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,7 @@ export default function WorkForm({ initialData }: WorkFormProps) {
       setLoading(false);
     } else {
       router.push("/dashboard/work");
-      router.refresh();
+      // Local data is updated by useResourceMutations.
     }
   };
 

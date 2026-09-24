@@ -1,30 +1,6 @@
-import { useEffect, useState } from "react";
-import { getExternalLinks } from "@/app/actions/linksActions";
-import { IExternalLink } from "@/types/resume";
-
+"use client";
+import { useData } from "@/providers/DataProvider";
 export function useExternalLinks() {
-  const [links, setLinks] = useState<IExternalLink[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchLinks = async () => {
-      setLoading(true);
-      const result = await getExternalLinks();
-      
-      if (result.error) {
-        setError(result.error);
-        setLinks([]);
-      } else {
-        setLinks(result.data || []);
-        setError(null);
-      }
-      
-      setLoading(false);
-    };
-
-    fetchLinks();
-  }, []);
-
-  return { links, loading, error };
+  const { data } = useData();
+  return { links: data.links ?? [], loading: false, error: null as string | null };
 }

@@ -1,12 +1,12 @@
-import { Suspense } from "react";
-import Section from "@/components/layout/Section";
-import FeedbackCreateContent from "./FeedbackCreateContent";
-import Loading from "@/components/layout/Loading";
-
-export default function FeedbackCreatePage() {
-  return (
-    <Suspense fallback={<Section><Loading /></Section>}>
-      <FeedbackCreateContent />
-    </Suspense>
-  );
+import { dataKey } from "@/server/dataKey";
+import { notFound } from "next/navigation";
+import { loadData } from "@/server/components/DataBoundary";
+import { DataProvider } from "@/providers/DataProvider";
+import PageClient from "./pageClient";
+export default async function Page({ searchParams }: { searchParams: Promise<{ id?: string }> }) {
+  const { id } = await searchParams;
+  const data = await loadData(["feedbacks"]);
+  const initialData = id ? data.feedbacks?.find(item => item.id === id) : undefined;
+  if (id && !initialData) notFound();
+  return <DataProvider key={dataKey(data)} initial={data}><PageClient initialData={initialData} /></DataProvider>;
 }

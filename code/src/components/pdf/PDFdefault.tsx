@@ -157,7 +157,7 @@ export default function PDFdefault({ curriculum }: { curriculum: ICurriculumPopu
           </View>
         </>}
 
-        {skills.length > 0 && <>
+        {skillEntries.length > 0 && <>
           <View style={pdfStyles.lh} />
           <View style={stylesPDF.section}>
             <Text style={pdfStyles.h2}>Habilidades</Text>

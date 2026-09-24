@@ -1,3 +1,4 @@
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 import React, { useCallback } from "react";
 import styles from "./CardPdf.module.css";
 import { DocumentProps, pdf } from "@react-pdf/renderer";
@@ -9,8 +10,6 @@ import IllustrationResumePana from "../illustrations/IllustrationResumePana";
 import A from "../base/A";
 import Link from "../base/Link";
 import { LuDownload, LuFileText, LuPencil, LuTrash2 } from "react-icons/lu";
-import { deleteCurriculumAction } from "@/app/actions/curriculumActions";
-import { useRouter } from "next/navigation";
 
   interface CardPDFProps {
     doc: React.ReactElement<DocumentProps>;
@@ -20,7 +19,7 @@ import { useRouter } from "next/navigation";
   }
 
 export default function CardPDF({ doc, name = "Currículo", layout = "Default", id }: CardPDFProps) {
-  const router = useRouter();
+  const { remove: deleteCurriculumAction } = useResourceMutations("curriculums");
   // Visualizar em nova aba
   const handleOpenPdf = useCallback(async () => {
     const blob = await pdf(doc).toBlob();
@@ -47,7 +46,7 @@ export default function CardPDF({ doc, name = "Currículo", layout = "Default", 
     if (window.confirm("Tem certeza que deseja deletar este currículo?")) {
       const result = await deleteCurriculumAction(id);
       if (result.success) {
-        router.refresh();
+        // Local data is updated by useResourceMutations.
       } else {
         alert(result.error || "Erro ao deletar currículo");
       }

@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
         </Text>
 
         <Text variant="h2">6. Uso de Cookies</Text>
-        <Text variant="p2"> Nós utilizamos cookies para garantir que a sua sessão permaneça ativa e para que o sistema possa lembrar quais itens você selecionou para o seu currículo. 
+        <Text variant="p2"> Nós utilizamos cookies para garantir que a sua sessão permaneça ativa. Suas seleções de currículo são armazenadas no banco de dados.
         </Text>
         <Text variant="p2"> Para entender detalhadamente quais tipos de cookies utilizamos e como você pode gerenciá-los, acesse nossa <Link href="/cookies">Política de Cookies completa</Link>.
         </Text>
@@ -61,7 +61,7 @@ export default function PrivacyPolicyPage() {
         </Text>
 
         <Text variant="p3">
-          Última atualização: 27 de fevereiro de 2026. 
+          Última atualização: 27 de fevereiro de 2026.
         </Text>
       </Article>
     </Section>

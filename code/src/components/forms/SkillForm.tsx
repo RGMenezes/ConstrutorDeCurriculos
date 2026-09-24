@@ -1,9 +1,9 @@
 "use client";
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ISkill } from "@/types/skill";
-import { upsertSkill } from "@/app/actions/skillActions";
 import InputText from "../inputs/InputText";
 import Button from "../base/Button";
 import Text from "../base/Text";
@@ -14,6 +14,7 @@ interface SkillFormProps {
 }
 
 export default function SkillForm({ initialData }: SkillFormProps) {
+  const { save: upsertSkill } = useResourceMutations("skills");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +50,7 @@ export default function SkillForm({ initialData }: SkillFormProps) {
       setLoading(false);
     } else {
       router.push("/dashboard/skill");
-      router.refresh();
+      // Local data is updated by useResourceMutations.
     }
   };
 

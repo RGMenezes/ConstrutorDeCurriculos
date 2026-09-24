@@ -1,22 +1,13 @@
-"use client";
-
-import { Suspense } from "react";
-import CurriculumFormContent from "./CurriculumFormContent";
-import Loading from "@/components/layout/Loading";
-import { useSearchParams } from "next/navigation";
-import { useCurriculums } from "@/hooks/useCurriculums";
-
-export default function CurriculumFormPage() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  const { curriculums, loading } = useCurriculums();
-  const initialData = id ? curriculums.find(c => c.id === id) : undefined;
-
-  if (loading) return <Loading />;
-
-  return (
-    <Suspense fallback={<Loading />}> 
-      <CurriculumFormContent initialData={initialData} curriculumId={id ?? undefined} />
-    </Suspense>
-  );
+import { dataKey } from "@/server/dataKey";
+import { notFound } from "next/navigation";
+import { loadData } from "@/server/components/DataBoundary";
+import { DataProvider } from "@/providers/DataProvider";
+import { resources } from "@/types/entities";
+import PageClient from "./pageClient";
+export default async function Page({ searchParams }: { searchParams: Promise<{ id?: string }> }) {
+  const { id } = await searchParams;
+  const data = await loadData(resources);
+  const initialData = id ? data.curriculums?.find(value => value.id === id) : undefined;
+  if (id && !initialData) notFound();
+  return <DataProvider key={dataKey(data)} initial={data}><PageClient initialData={initialData} curriculumId={id} /></DataProvider>;
 }

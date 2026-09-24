@@ -1,0 +1,5 @@
+export const button = "inline-flex items-center justify-center rounded-lg border border-solid border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700";
+export const primaryButton = "inline-flex items-center justify-center rounded-lg border border-solid border-blue-700 bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:opacity-60";
+export const dangerButton = "inline-flex items-center justify-center rounded-lg border border-solid border-red-700 bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800 disabled:opacity-60";
+export const input = "w-full rounded-lg border border-solid border-slate-300 bg-white px-3 py-2 text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-white";
+export const panel = "rounded-xl border border-solid border-slate-200 bg-white p-5 text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100";

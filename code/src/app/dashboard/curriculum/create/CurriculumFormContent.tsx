@@ -20,7 +20,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { useFeedback } from "@/hooks/useFeedback";
 import styles from "./create.module.css";
 import { useRouter } from "next/navigation";
-import { createCurriculumAction, updateCurriculumAction } from "@/app/actions/curriculumActions";
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 import InputText from "@/components/inputs/InputText";
 import Checkbox from "@/components/inputs/Checkbox";
 import PDFdefault from "@/components/pdf/PDFdefault";
@@ -44,6 +44,9 @@ interface CurriculumFormContentProps {
 
 export default function CurriculumFormContent({ initialData, curriculumId }: CurriculumFormContentProps) {
   const router = useRouter();
+  const { save } = useResourceMutations("curriculums");
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const [step, setStep] = useState(0);
   const [curriculum, setCurriculum] = useState({
     profile_ids: initialData?.profile_ids ?? [],
@@ -104,18 +107,13 @@ export default function CurriculumFormContent({ initialData, curriculumId }: Cur
   };
   const isLastStep = step === steps.length - 1;
   const handleFinish = async () => {
-    const payload = curriculum;
-    let result;
-    if (curriculumId) {
-      result = await updateCurriculumAction(curriculumId, payload);
-    } else {
-      result = await createCurriculumAction(payload);
-    }
-    if (result.success) {
-      router.push("/dashboard");
-    } else {
-      alert(result.error || "Erro ao salvar currículo");
-    }
+    if (saving) return;
+    setSaving(true);
+    setSaveError("");
+    const result = await save({ ...curriculum, id: curriculumId });
+    if (result.success) router.push("/dashboard");
+    else setSaveError(result.error || "Erro ao salvar currículo");
+    setSaving(false);
   };
 
   // Call useCurriculumPopulated at the top level
@@ -220,19 +218,20 @@ export default function CurriculumFormContent({ initialData, curriculumId }: Cur
             <div className={styles.finalPreview}>
               <Text variant="h4" >PDF</Text>
               <div>
-                <PDFdefault curriculum={populatedCurriculum}/>
+                <PDFdefault curriculum={{ ...populatedCurriculum, id: undefined }}/>
               </div>
             </div>
           </div>
         )}
       </div>
+      {saveError && <p role="alert" className="text-red-600 dark:text-red-400">{saveError}</p>}
       <div className={styles.wizardActions}>
-        <Button onClick={goBack} variant="buttonSecondary" iconPosition="left" Icon={FaChevronLeft}>
+        <Button disabled={saving} onClick={goBack} variant="buttonSecondary" iconPosition="left" Icon={FaChevronLeft}>
           Voltar
         </Button>
         {isLastStep ? (
-          <Button onClick={handleFinish} variant="buttonPrimary" iconPosition="left" Icon={FaCheck}>
-            Concluir
+          <Button onClick={handleFinish} disabled={saving} variant="buttonPrimary" iconPosition="left" Icon={FaCheck}>
+            {saving ? "Salvando..." : "Concluir"}
           </Button>
         ) : (
           <Button onClick={goNext} variant="buttonPrimary" Icon={FaChevronRight}>

@@ -1,3 +1,9 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@custom-variant dark (&:where(.dark, .dark *));
+/* Preflight is introduced only after legacy CSS Modules have been migrated. */
+@layer base {
 :root {
   --color--background: #FDFFFC;
   --color--on-background: #011627;
@@ -20,16 +26,6 @@
 
   --border--radius: 8px;
   --backdrop--blur: blur(20px);
-}
-
-@media (max-width: 600px) {
-  html, body {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-  }
-  html::-webkit-scrollbar, body::-webkit-scrollbar {
-    display: none !important;
-  }
 }
 
 html,
@@ -69,4 +65,24 @@ body {
 
 :target {
   scroll-margin-top: 100px;
+}
+:root { --font-inter: Arial, Helvetica, sans-serif; --font-space-grotesk: Arial, Helvetica, sans-serif; color-scheme: light; }
+.dark {
+  color-scheme: dark;
+  --color--background: #0f172a;
+  --color--on-background: #f1f5f9;
+  --color--surface: #1e293b;
+  --color--on-surface: #f8fafc;
+  --color--surface-variant: #334155;
+  --color--border: #94a3b8;
+  --color--secondary: #475569;
+  --color--shadow: #00000080;
+}
+a { color: inherit; }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: wait; opacity: .65; }
+:focus-visible { outline: 2px solid #3b82f6; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html, body { scroll-behavior: auto; } }
+
 }

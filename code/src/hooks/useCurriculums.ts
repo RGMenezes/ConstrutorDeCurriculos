@@ -1,27 +1,6 @@
-import { useEffect, useState } from "react";
-import { ICurriculum } from "@/types/curriculum";
-import { getCurriculums } from "@/app/actions/curriculumActions";
-
+"use client";
+import { useData } from "@/providers/DataProvider";
 export function useCurriculums() {
-  const [curriculums, setCurriculums] = useState<ICurriculum[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchCurriculums = async () => {
-      setLoading(true);
-      const result = await getCurriculums();
-      if (result.error) {
-        setError(result.error);
-        setCurriculums([]);
-      } else {
-        setCurriculums(result.data || []);
-        setError(null);
-      }
-      setLoading(false);
-    };
-    fetchCurriculums();
-  }, []);
-
-  return { curriculums, loading, error };
+  const { data } = useData();
+  return { curriculums: data.curriculums ?? [], loading: false, error: null as string | null };
 }

@@ -23,13 +23,13 @@ export default function CookiesPolicy() {
         <ul>
           <li><strong>Autenticação:</strong> Para manter você conectado enquanto navega entre as seções de preenchimento de dados;</li>
           <li><strong>Segurança:</strong> Para proteger seus dados contra acessos não autorizados e detectar atividades maliciosas;</li>
-          <li><strong>Preferências:</strong> Para lembrar quais seções você selecionou para compor o seu currículo atual;</li>
-          <li><strong>Desempenho:</strong> Para entender como a plataforma está sendo utilizada e identificar possíveis erros de carregamento.</li>
+          <li><strong>Preferências:</strong> Para lembrar sua preferência de tema claro, escuro ou do sistema;</li>
+
         </ul>
 
         <Text variant="h2">3. Cookies de Terceiros</Text>
         <Text variant="p2">
-          Podemos utilizar serviços de análise (como Google Analytics) que também podem configurar cookies em seu dispositivo para nos ajudar a entender o tráfego do site. Esses cookies coletam informações de forma anônima.
+          O login utiliza Google ou GitHub. Ao visitar esses serviços para se autenticar, aplicam-se as políticas de cookies do respectivo provedor. Esta versão não inclui ferramentas de análise de tráfego.
         </Text>
 
         <Text variant="h2">4. Controle de Cookies</Text>

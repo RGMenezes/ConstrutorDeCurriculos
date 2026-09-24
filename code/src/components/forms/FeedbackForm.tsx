@@ -1,9 +1,9 @@
 "use client";
+import { useResourceMutations } from "@/hooks/useResourceMutations";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IFeedback } from "@/types/feedback";
-import { upsertFeedback } from "@/app/actions/feedbackActions";
 import InputText from "../inputs/InputText";
 import Button from "../base/Button";
 import Text from "../base/Text";
@@ -14,6 +14,7 @@ interface FeedbackFormProps {
 }
 
 export default function FeedbackForm({ initialData }: FeedbackFormProps) {
+  const { save: upsertFeedback } = useResourceMutations("feedbacks");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -58,7 +59,7 @@ export default function FeedbackForm({ initialData }: FeedbackFormProps) {
       setLoading(false);
     } else {
       router.push("/dashboard/feedback");
-      router.refresh();
+      // Local data is updated by useResourceMutations.
     }
   };
 
